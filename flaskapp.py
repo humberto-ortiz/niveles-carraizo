@@ -1,5 +1,6 @@
 import os
-from datetime import datetime
+import pygal
+from datetime import datetime, timedelta
 from flask import Flask, request, flash, url_for, redirect, \
      render_template, abort, send_from_directory
 
@@ -21,6 +22,17 @@ def test():
 @app.route("/niveles")
 def niveles():
     return send_from_directory("static/", "niveles.txt")
+
+@app.route("/plot")
+def plot():
+    datey = pygal.DateY(x_label_rotation=20)
+    datey.add("Visits", [
+        (datetime(2013, 1, 2), 300),
+        (datetime(2013, 1, 12), 412),
+        (datetime(2013, 2, 2), 823),
+        (datetime(2013, 2, 22), 672)
+        ])
+    datey.render()
 
 if __name__ == '__main__':
     app.run(app.config['IP'], app.config['PORT'])
