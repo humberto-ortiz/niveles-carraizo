@@ -41,6 +41,7 @@ def plot():
     datey.add("Observacion", [(start, 39.5), (end, 39.5)])
     datey.add("Ajustes", [(start, 38.5), (end, 38.5)])
     datey.add("Control", [(start, 36.5), (end, 36.5)])
+    datey.add("Fuera de servicio", [(start, 30.0), (end, 30.0)])
     return datey.render_response()
 
 if __name__ == '__main__':
