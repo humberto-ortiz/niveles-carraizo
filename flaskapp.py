@@ -18,5 +18,9 @@ def serveStaticResource(resource):
 def test():
     return "<strong>It's Alive!</strong>"
 
+@app.route("/niveles")
+def niveles():
+    return send_from_directory("static/", "niveles.txt")
+
 if __name__ == '__main__':
     app.run(app.config['IP'], app.config['PORT'])
