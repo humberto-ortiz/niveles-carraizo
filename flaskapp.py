@@ -32,7 +32,9 @@ def plot():
             niveles.append( ( datetime.strptime(fields[0], "%Y-%m-%d"), float(fields[1]) ) )
     start, trash = niveles[0]
     end, trash = niveles[-1]
-    datey = pygal.DateY(x_label_rotation=20,range=(30.0,41.14),title=u'Niveles')
+    datey = pygal.DateY(x_label_rotation=20,range=(30.0,41.14),title=u'Niveles',
+    y_title="Metros sobre el nivel del mar")
+    # Can't fix label format, this doesn't work.
     datey.x_label_format = "%Y-%m-%d"
     datey.add("Carraizo", niveles)
     datey.add("Optimo", [(start, 41.14), (end, 41.14)])
