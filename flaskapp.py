@@ -23,7 +23,7 @@ def test():
 
 @app.route("/niveles")
 def niveles():
-    return send_from_directory("static/", "niveles.txt")
+    return send_from_directory(data_dir, "niveles.txt")
 
 @app.route("/plot")
 def plot():
