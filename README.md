@@ -1,6 +1,9 @@
 # Plot water level in Carraizo
 
-A simple Flask + pygal app to plot the water levels in Carraizo reservoir.
+A simple [Flask](http://flask.pocoo.org/)
+ + [pygal](http://pygal.org/)
+  app to plot the water levels in Carraizo reservoir.
+  See it [live](http://flask-alephazul.rhcloud.com).
 
 Scrapes the water level from [AAA](http://www.acueductospr.com/niveles/)
 using a cron job and plots the data with pygal.
