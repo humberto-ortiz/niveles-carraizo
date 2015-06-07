@@ -1,0 +1,10 @@
+#!/bin/sh
+
+HOUR=$(date -u "+%H")
+
+if [ $HOUR != 12 ]; then
+    exit
+fi
+# rest of the script
+
+/usr/bin/env python $OPENSHIFT_REPO_DIR/parser.py >> $OPENSHIFT_DATA_DIR/niveles.txt
