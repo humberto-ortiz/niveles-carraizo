@@ -7,4 +7,4 @@ if [ $HOUR != 12 ]; then
 fi
 # rest of the script
 
-/usr/bin/env python $OPENSHIFT_REPO_DIR/parser.py >> $OPENSHIFT_DATA_DIR/niveles.txt
+/usr/bin/env python $OPENSHIFT_REPO_DIR/scrape.py >> $OPENSHIFT_DATA_DIR/niveles.txt
