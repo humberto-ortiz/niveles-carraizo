@@ -7,6 +7,8 @@ from flask import Flask, request, flash, url_for, redirect, \
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
 
+data_dir = os.environ['OPENSHIFT_DATA_DIR']
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -26,7 +28,7 @@ def niveles():
 @app.route("/plot")
 def plot():
     niveles = []
-    with open("static/niveles.txt","r") as f:
+    with open(data_dir + "/niveles.txt","r") as f:
         for line in f:
             fields = line.split()
             niveles.append( ( datetime.strptime(fields[0], "%Y-%m-%d"), float(fields[1]) ) )
@@ -42,6 +44,7 @@ def plot():
     datey.add("Ajustes", [(start, 38.5), (end, 38.5)])
     datey.add("Control", [(start, 36.5), (end, 36.5)])
     datey.add("Fuera de servicio", [(start, 30.0), (end, 30.0)])
+    # pygal can render flask response directly
     return datey.render_response()
 
 if __name__ == '__main__':
