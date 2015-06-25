@@ -7,7 +7,7 @@ from flask import Flask, request, flash, url_for, redirect, \
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
 
-data_dir = os.environ['OPENSHIFT_DATA_DIR']
+data_dir = app.config['DATA_DIR']
 
 @app.route('/')
 def index():
