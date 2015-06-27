@@ -27,12 +27,15 @@ def niveles():
 
 @app.route("/plot")
 def plot():
-    limit = -30 # where should we start plotting set to -30 for one month's data
     niveles = []
     with open(data_dir + "/niveles.txt","r") as f:
         for line in f:
             fields = line.split()
             niveles.append( ( datetime.strptime(fields[0], "%Y-%m-%d"), float(fields[1]) ) )
+    if len(niveles) > 30:
+        limit = -30 # where should we start plotting set to -30 for one month's data
+    else:
+        limit = 0    
     start, trash = niveles[limit]
     end, trash = niveles[-1]
     datey = pygal.DateY(x_label_rotation=20,range=(30.0,41.14),title=u'Niveles',
