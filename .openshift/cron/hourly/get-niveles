@@ -2,7 +2,8 @@
 
 HOUR=$(date -u "+%H")
 
-if [ $HOUR != 12 ]; then
+# AAA is publishing new data at 5 AM AST, I pull at 6 AM AST. 10 UTC
+if [ $HOUR != 10 ]; then
     exit
 fi
 # rest of the script
