@@ -1,5 +1,7 @@
+# coding: utf-8
 import os
 import pygal
+from random import randint
 from datetime import datetime, timedelta
 from flask import Flask, request, flash, url_for, redirect, \
      render_template, abort, send_from_directory, make_response
@@ -16,6 +18,35 @@ def index():
 @app.route('/<path:resource>')
 def serveStaticResource(resource):
     return send_from_directory('static/', resource)
+
+@app.route("/random")
+def rand():
+    students = ['Christian	Agostini',
+                'Jeffrey	Chan',
+                'Kai-Ming	Chow',
+                'Omar	Cruz Pantoja',
+                'Ian	Davila',
+                'Alejandro 	Deloach',
+                u'Robbin	Díaz',
+                'Israel	Dilan',
+                'Julio	Franco',
+                'Louis	Gil',
+                'Lillian	Gonzalez',
+                'María Margarita	López-Delgado',
+                'Christian	Maldonado',
+                'Luis	Morales',
+                'Emmanuel	Nieves',
+                'José	Reyes',
+                'Anthony	Rios',
+                'Grace M.	Rodriguez',
+                'kristyan	Rodriguez',
+                'Javier	Rodriguez Ramos',
+                'Omar	Rosado',
+                'Matias	Rosner',
+                'Andres	Sanjurjo',
+                'Valerie	Santiago']
+
+    return students[randint(0,len(students)-1)]
 
 @app.route("/test")
 def test():
