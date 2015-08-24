@@ -21,7 +21,10 @@ def serveStaticResource(resource):
 
 @app.route("/random")
 def rand():
-    students = ['Alfredo Valles Salas',
+    students = ["Dorian Baez",
+                "Manuel Chau",
+                "Julio Torres",
+                'Alfredo Valles Salas',
                 'Omar Cruz',
                 'Christian	Agostini',
                 'Jeffrey	Chan',
