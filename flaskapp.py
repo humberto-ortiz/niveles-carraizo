@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
 import pygal
-from random import randint
+from random import randint, shuffle
 from datetime import datetime, timedelta
 from flask import Flask, request, flash, url_for, redirect, \
      render_template, abort, send_from_directory, make_response
@@ -21,11 +21,11 @@ def serveStaticResource(resource):
 
 @app.route("/random")
 def rand():
-    students = ["Dorian Baez",
-                "Manuel Chau",
-                "Julio Torres",
+    students = [#"Dorian Baez",
+                #"Manuel Chau",
+                #"Julio Torres",
                 'Alfredo Valles Salas',
-                'Omar Cruz',
+                #'Omar Cruz',
                 'Christian	Agostini',
                 'Jeffrey	Chan',
                 'Kai-Ming	Chow',
@@ -40,18 +40,18 @@ def rand():
                 'María Margarita	López-Delgado',
                 'Christian	Maldonado',
                 'Luis	Morales',
-                'Emmanuel	Nieves',
+                #'Emmanuel	Nieves',
                 'José	Reyes',
                 'Anthony	Rios',
                 'Grace M.	Rodriguez',
-                'kristyan	Rodriguez',
+                'Kristyan	Rodriguez',
                 'Javier	Rodriguez Ramos',
                 'Omar	Rosado',
                 'Matias	Rosner',
                 'Andres	Sanjurjo',
                 'Valerie	Santiago']
-
-    return students[randint(0,len(students)-1)]
+    shuffle(students)
+    return "<li>" + "\n<li>".join(students)#[randint(0,len(students)-1)]
 
 @app.route("/test")
 def test():
@@ -67,11 +67,17 @@ def plot():
     with open(data_dir + "/niveles.txt","r") as f:
         for line in f:
             fields = line.split()
-            niveles.append( ( datetime.strptime(fields[0], "%Y-%m-%d"), float(fields[1]) ) )
+            if 10 == len(fields[0]):
+                fmt = "%Y-%m-%d"
+            else:
+                fmt =  "%Y-%m-%dT%H:%M:%S"
+                fields[0] = fields[0][:-6]
+
+            niveles.append (( datetime.strptime(fields[0], fmt), float(fields[1]) ) )
     if len(niveles) > 30:
         limit = -30 # where should we start plotting set to -30 for one month's data
     else:
-        limit = 0    
+        limit = 0
     start, trash = niveles[limit]
     end, trash = niveles[-1]
     datey = pygal.DateY(x_label_rotation=20,range=(30.0,41.14),title=u'Niveles',
